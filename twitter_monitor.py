@@ -213,6 +213,22 @@ def check_tweets(account, user, account_index, API):
             webhook.execute()
             SAVE = True
 
+def add_user(username, profile_url):
+    webhook = DiscordWebhook(url=DISCORD_URL)
+    embed = DiscordEmbed(color =242424)
+    embed.set_author(name="@{} account **added** successfully...".format(username), icon_url=profile_url)
+    embed.set_footer(text='Today at {}'.format(datetime.datetime.now().strftime("%I:%M %p")))
+    webhook.add_embed(embed)
+    webhook.execute()
+
+def remove_user(username, profile_url):
+    webhook = DiscordWebhook(url=DISCORD_URL)
+    embed = DiscordEmbed(color =242424)
+    embed.set_author(name="@{} account **removed** successfully...".format(username), icon_url=profile_url)
+    embed.set_footer(text='Today at {}'.format(datetime.datetime.now().strftime("%I:%M %p")))
+    webhook.add_embed(embed)
+    webhook.execute()
+
 def check_mointoring(account_index, API, delay):
     global RELOAD
     global monitoring
@@ -259,11 +275,13 @@ def start():
             delay = len(api[1])
             for user in api[1]:
                 thread.start_new_thread(check_mointoring, (user, api[0], delay,))
-while True:
-    if RELOAD == True:
-        time.sleep(3)
-        start()
-        RELOAD = False
-    pass
+
+if __name__ == "__main__":
+    while True:
+        if RELOAD == True:
+            time.sleep(3)
+            start()
+            RELOAD = False
+        pass
 
 
