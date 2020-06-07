@@ -8,4 +8,4 @@ A Python based Twitter monitor which features include:
     - If the tweet quotes another tweet, both the tweet and the quoted tweet have their content checked for user mentions and       links. The poster of the quoted tweet has their bio checked.
 - When a targetted user changes their bio or bio url the monitor will pick up the change.
 
-Made with :heart: by Will.
+Made with :heart: by JX.
